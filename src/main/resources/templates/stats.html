@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Профиль</title>
+    <link rel="stylesheet" href="/static/login_reg_profile_style.css">
+</head>
+
+<head th:insert="blocks\head :: head"></head>
+
+
+<body class="d-flex flex-column h-100" style="background: #c98fc2">
+
+<header th:insert="blocks\header :: header" class="sticky-top" role="navigation"></header>
+
+<hr class="clear">
+
+<main class="container flex-shrink-0 bg-light form-signin">
+    <div class="pt-5 pb-3">
+        <div style="text-align: center;">
+            <p>Финансы</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 input-group">
+            <p class="form-control">Название</p>
+            <p class="form-control">Количество проданных</p>
+            <p class="form-control">Стоимость одной</p>
+            <p class="form-control">Выручка</p>
+        </div>
+        <div th:each="s : ${sessions}" class="col-lg-12 input-group">
+            <p th:text="${s.name}" class="form-control">Название</p>
+            <p th:text="${s.income.count}" class="form-control">Количество проданных</p>
+            <p th:text="${s.income.price}" class="form-control">Стоимость одной</p>
+            <p th:text="${s.income.income}" class="form-control">Выручка</p>
+        </div>
+        <div class="col-lg-12 input-group">
+            <p class="form-control">Суммарная выручка</p>
+            <p class="form-control"></p>
+            <p class="form-control"></p>
+            <p th:text="${income}" class="form-control"></p>
+        </div>
+    </div>
+</main>
+
+<hr class="clear">
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Сотрудники</title>
+    <link rel="stylesheet" href="/static/login_reg_profile_style.css">
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column h-100" style="background: #c98fc2">
+
+<header th:insert="blocks/header :: header" class="sticky-top" role="banner"></header>
+
+<hr class="clear">
+
+<main class="container flex-shrink-0 bg-light form-signin">
+    <div style="text-align: center;">
+        <div class="row">
+            <h2>Обновить данные сотрудников</h2>
+            <div class="col-lg-12 my-1 input-group">
+                <span class="form-control">Имя</span>
+                <span class="form-control">Роль</span>
+                <span class="form-control"></span>
+                <span class="form-control"></span>
+            </div>
+        </div>
+        <div class="row" th:each="user : ${users}">
+            <div class="col-lg-12 my-1">
+                <form class="input-group" th:action="'/users/edit/' + ${user.id}" method="post">
+                    <input class="form-control" th:value="${user.username}" disabled/>
+                    <select class="form-control" name="role">
+                        <option th:each="r : ${roles}" th:value="${r}" th:label="${r.name}"
+                                th:selected="${r == user.role}"></option>
+                    </select>
+                    <button class="btn form-control btn-success" type="submit">Обновить</button>
+                    <a th:href="'/users/delete/' + ${user.id}" class="btn form-control btn-danger"
+                       role="button">Удалить</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<hr class="clear">
+
+
+
+</body>
+
+</html>

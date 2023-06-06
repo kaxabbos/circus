@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<head>
+    <title>Редактирование</title>
+    <link rel="stylesheet" href="/session_add_edit_style.css">
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column h-100" style="background: #c98fc2">
+
+<header th:insert="blocks/header :: header" class="sticky-top"></header>
+
+<hr class="clear">
+
+<main class="container-lg flex-shrink-0 bg-light">
+    <form th:action="'/sessions/edit/' + ${s.id}" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-12 input-group flex-nowrap size-150">
+                <label for="name" class="input-group-text">Название</label>
+                <input id="name" name="name" type="text" class="form-control"
+                       required th:value="${s.name}">
+            </div>
+            <div class="col-lg-6 size-150">
+                <div class=" input-group">
+                    <label for="time" class="input-group-text">Зал</label>
+                    <input id="time" name="time" type="time" class="form-control"
+                           required th:value="${s.time}">
+                </div>
+                <div class="input-group">
+                    <label for="isbn" class="input-group-text">Дата</label>
+                    <input id="isbn" name="date" type="date" class="form-control"
+                           required th:value="${s.date}">
+                </div>
+                <div class="input-group">
+                    <label for="poster" class="input-group-text">Постер</label>
+                    <input id="poster" name="poster" type="file" class="form-control"
+                           accept=".jpg,.jpeg,.png">
+                </div>
+                <div class="input-group">
+                    <label for="screenshots" class="input-group-text">Фотографии</label>
+                    <input id="screenshots" name="screenshots" type="file" class="form-control"
+                           accept=".jpg,.jpeg,.png" multiple>
+                </div>
+            </div>
+            <div class="col-lg-6 size-150">
+                <div class=" input-group">
+                    <label for="start" class="input-group-text">Год выпуска</label>
+                    <input id="start" name="start" type="text" class="form-control" required th:value="${s.start}">
+                </div>
+                <div class="input-group">
+                    <label for="price" class="input-group-text">Цена</label>
+                    <input id="price" name="price" type="number" step="1" minlength="1" maxlength="1000"
+                           class="form-control" required th:value="${s.income.price}">
+                </div>
+                <div class="input-group">
+                    <label for="weight" class="input-group-text">Количество</label>
+                    <input id="weight" name="count" type="number" step="1" max="100"
+                           class="form-control" required th:value="${s.count}">
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <h4><label for="description">Описание</label></h4>
+                <input type="text" class="form-control" name="description" id="description" required
+                       th:value="${s.description}">
+            </div>
+        </div>
+        <button class="btn btn-lg btn-success" type="submit">Обновить</button>
+        <button class="btn btn-lg btn-success" type="reset">Вернуть назад</button>
+        <a class="btn btn-lg btn-success" href="/catalog/all">Отмена</a>
+    </form>
+    <div class="pt-3"></div>
+</main>
+
+<hr class="clear">
+
+
+</body>
+
+</html>
